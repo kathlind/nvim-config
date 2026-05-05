@@ -23,7 +23,7 @@ return {
 		enable_git_status = true,
 		enable_diagnostics = true,
 
-		open_files_with_window_picker = true,
+		open_files_with_window_picker = false,
 
 		window = {
 			position = "left",
