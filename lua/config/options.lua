@@ -11,7 +11,48 @@ vim.opt.wrap = false -- не переносить длинные строки
 vim.opt.linebreak = true -- если wrap включён, переносить строки по словам, а не посреди слова
 vim.opt.showmode = false -- не показывать режим INSERT/NORMAL, потому что это обычно делает statusline
 vim.opt.ruler = false -- отключить стандартный ruler внизу
-vim.opt.laststatus = 0 -- один глобальный statusline на весь экран
+vim.opt.laststatus = 0 -- не показывать statusline снизу
+vim.opt.statusline = " " -- убрать текст из statusline-разделителя между горизонтальными split-окнами
+
+-- Символы разделителей между окнами.
+-- vert отвечает за вертикальный разделитель.
+-- stl/stlnc отвечают за строку-разделитель между горизонтальными split-окнами.
+vim.opt.fillchars = {
+	vert = "│",
+	horiz = "─",
+	horizup = "┴",
+	horizdown = "┬",
+	vertleft = "┤",
+	vertright = "├",
+	verthoriz = "┼",
+	stl = "─",
+	stlnc = "─",
+	eob = " ",
+}
+
+local function split_separators()
+	vim.api.nvim_set_hl(0, "WinSeparator", {
+		fg = "#6c7086",
+		bg = "NONE",
+	})
+
+	vim.api.nvim_set_hl(0, "StatusLine", {
+		fg = "#6c7086",
+		bg = "NONE",
+	})
+
+	vim.api.nvim_set_hl(0, "StatusLineNC", {
+		fg = "#45475a",
+		bg = "NONE",
+	})
+end
+
+split_separators()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = split_separators,
+})
+
 vim.opt.scrolloff = 18 -- держать 18 строк сверху/снизу вокруг курсора
 vim.opt.sidescrolloff = 8 -- держать 8 колонок слева/справа вокруг курсора
 vim.opt.mouse = "a" -- включить мышь
