@@ -59,14 +59,19 @@ return {
 			local icon, icon_color = require("mini.icons").get("file", filename)
 			local modified = vim.bo[props.buf].modified
 
-			local bg = props.focused and "#89b4fa" or "#45475a"
-			local fg = props.focused and "#11111b" or "#cdd6f4"
+			local function hex(hl_name, attr)
+				local hl = vim.api.nvim_get_hl(0, { name = hl_name, link = false })
+				return hl[attr] and string.format("#%06x", hl[attr]) or nil
+			end
+
+			local bg = props.focused and (hex("Special", "fg") or "#5588ff") or (hex("WinSeparator", "fg") or "#555555")
+			local fg = props.focused and (hex("Normal", "bg") or "#111111") or (hex("Normal", "fg") or "#cccccc")
 
 			return {
 				{ "", guifg = bg, guibg = "NONE" },
 				{ " " .. icon .. " ", guifg = props.focused and "#11111b" or icon_color, guibg = bg },
 				{ filename, guifg = fg, guibg = bg, gui = modified and "bold,italic" or "bold" },
-				{ modified and " ●" or "", guifg = "#f38ba8", guibg = bg },
+				{ modified and " ●" or "", guifg = hex("DiagnosticError", "fg") or "#ff5555", guibg = bg },
 				{ " ", guibg = bg },
 				{ "", guifg = bg, guibg = "NONE" },
 			}

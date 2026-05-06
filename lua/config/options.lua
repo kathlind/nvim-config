@@ -36,20 +36,15 @@ vim.opt.fillchars = {
 }
 
 local function split_separators()
-	vim.api.nvim_set_hl(0, "WinSeparator", {
-		fg = "#6c7086",
-		bg = "NONE",
-	})
+	local comment = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
+	local nontext = vim.api.nvim_get_hl(0, { name = "NonText", link = false })
 
-	vim.api.nvim_set_hl(0, "StatusLine", {
-		fg = "#6c7086",
-		bg = "NONE",
-	})
+	local fg = comment.fg and string.format("#%06x", comment.fg) or "#888888"
+	local fg_nc = nontext.fg and string.format("#%06x", nontext.fg) or "#555555"
 
-	vim.api.nvim_set_hl(0, "StatusLineNC", {
-		fg = "#45475a",
-		bg = "NONE",
-	})
+	vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg, bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = "NONE" })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = fg_nc, bg = "NONE" })
 end
 
 split_separators()
