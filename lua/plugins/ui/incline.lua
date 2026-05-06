@@ -11,7 +11,6 @@ return {
 		ignore = {
 			buftypes = "special",
 			filetypes = {
-				"neo-tree",
 				"alpha",
 				"dashboard",
 				"lazy",

@@ -8,7 +8,25 @@ return {
 		scroll = {
 			enabled = true,
 		},
+		picker = {
+			enabled = true,
+			sources = {
+				explorer = {
+					auto_close = true,
+					win = {
+						list = {
+							keys = {
+								["<Space>"] = "confirm",
+							},
+						},
+					},
+				},
+			},
+		},
 
+		explorer = {
+			enabled = true,
+		},
 		-- Отображение отступов и анимированный scope.
 		indent = {
 			enabled = true,

@@ -10,9 +10,7 @@ return {
 		win = {
 			border = "rounded",
 		},
-		disable = {
-			ft = { "neo-tree" },
-		},
+
 		icons = {
 			keys = {
 				Space = "⎵ ",

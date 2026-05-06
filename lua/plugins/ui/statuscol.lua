@@ -1,19 +1,16 @@
 return {
 	"luukvbaal/statuscol.nvim",
-	-- event = "BufReadPost",
-	event = "VimEnter",
+	event = "BufReadPost",
 	config = function()
 		local builtin = require("statuscol.builtin")
 		require("statuscol").setup({
-			ft_ignore = { "neo-tree", "alpha", "lazy", "mason", "toggleterm", "noice" },
+			-- setopt = true,
+			ft_ignore = { "alpha", "lazy", "mason", "toggleterm", "noice" },
 			bt_ignore = { "nofile", "terminal" },
-			relculright = true, -- выравнивать относительные номера вправо
+			relculright = true,
 			segments = {
-				-- fold колонка
-				{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-				-- знаки (gitsigns, diagnostics)
+				{ text = { builtin.foldfunc }, click = "v:lua.ScFa", colwidth = 1 },
 				{ text = { "%s" }, click = "v:lua.ScSa" },
-				-- номера строк
 				{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
 			},
 		})
