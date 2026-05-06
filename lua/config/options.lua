@@ -6,7 +6,7 @@ vim.opt.number = true -- показывать абсолютные номера 
 vim.opt.relativenumber = true -- показывать относительные номера строк
 vim.opt.termguicolors = true -- включить true color support для нормальных цветов темы
 vim.opt.cursorline = true -- подсвечивать текущую строку
-vim.opt.signcolumn = "yes:1" -- всегда держать 1 колонку под diagnostics/git signs, чтобы текст не прыгал
+vim.opt.signcolumn = "yes" -- всегда держать 1 колонку под diagnostics/git signs, чтобы текст не прыгал
 vim.opt.foldcolumn = "1" -- держать 1 колонку под folds; statuscol сможет красиво её использовать
 vim.opt.wrap = false -- не переносить длинные строки
 vim.opt.linebreak = true -- если wrap включён, переносить строки по словам, а не посреди слова
@@ -29,6 +29,10 @@ vim.opt.fillchars = {
 	stl = "─",
 	stlnc = "─",
 	eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = "│",
 }
 
 local function split_separators()
@@ -120,7 +124,9 @@ vim.g.markdown_recommended_style = 0 -- не давать Vim перетират
 -- =========================
 
 vim.opt.foldlevel = 99 -- по умолчанию почти все folds открыты
-vim.opt.foldmethod = "indent" -- folds строятся по отступам
+vim.opt.foldmethod = "manual" -- folds строятся по отступам
+vim.opt.foldexpr = ""
+
 vim.opt.foldtext = "" -- не использовать дефолтный текст fold
 
 -- =========================

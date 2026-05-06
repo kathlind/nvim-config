@@ -42,7 +42,16 @@ return {
 
 			lualine_y = {
 				"%S", -- showcmd: показывает вводимые команды типа 10j, d3w, ci"
-				"filetype",
+				-- "filetype",
+				{
+					function()
+						local clients = vim.lsp.get_clients({ bufnr = 0 })
+						if #clients == 0 then
+							return ""
+						end
+						return "󰒋 " .. #clients
+					end,
+				},
 			},
 
 			lualine_z = {

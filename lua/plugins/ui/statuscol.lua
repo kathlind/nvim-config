@@ -9,9 +9,14 @@ return {
 			bt_ignore = { "nofile", "terminal" },
 			relculright = true,
 			segments = {
-				{ text = { builtin.foldfunc }, click = "v:lua.ScFa", colwidth = 1 },
+				-- gitsigns слева
 				{ text = { "%s" }, click = "v:lua.ScSa" },
-				{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+				-- номера строк
+				{ text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+				-- фолды справа
+				{ text = { builtin.foldfunc }, click = "v:lua.ScFa", colwidth = 1 },
+				-- отступ
+				{ text = { " " } },
 			},
 		})
 	end,

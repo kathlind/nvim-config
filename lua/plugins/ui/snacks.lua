@@ -13,8 +13,11 @@ return {
 			sources = {
 				explorer = {
 					auto_close = true,
+					follow_file = true,
+					ignored = true,
 					win = {
 						list = {
+							border = "rounded",
 							keys = {
 								["<Space>"] = "confirm",
 							},
