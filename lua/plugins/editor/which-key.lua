@@ -9,6 +9,8 @@ return {
 		sort = { "manual" },
 		win = {
 			border = "rounded",
+			title = true,
+			row = math.floor(vim.o.lines * 0.25),
 		},
 
 		icons = {
