@@ -9,6 +9,48 @@ return {
 	opts = {
 		keymap = require("config.keymaps.blink_keyTable"),
 
+		-- Enables completion only in useful editing contexts.
+		-- Disables blink.cmp for plain text-like buffers, special prompt/no-file buffers,
+		-- and while the cursor is inside Treesitter string or comment nodes.
+		-- This keeps completion active in code, but prevents noisy suggestions in prose,
+		-- comments, and string literals.
+		enabled = function()
+			local disabled_filetypes = {
+				"text",
+				"markdown",
+				"gitcommit",
+				"NeogitCommitMessage",
+				"DressingInput",
+			}
+
+			local disabled_buftypes = {
+				"prompt",
+				"nofile",
+			}
+
+			if vim.tbl_contains(disabled_filetypes, vim.bo.filetype) then
+				return false
+			end
+
+			if vim.tbl_contains(disabled_buftypes, vim.bo.buftype) then
+				return false
+			end
+
+			local ok, node = pcall(vim.treesitter.get_node)
+
+			while ok and node do
+				local node_type = node:type()
+
+				if node_type:find("string") or node_type:find("comment") then
+					return false
+				end
+
+				node = node:parent()
+			end
+
+			return true
+		end,
+
 		appearance = {
 			use_nvim_cmp_as_default = false,
 			nerd_font_variant = "mono",
