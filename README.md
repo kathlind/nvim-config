@@ -97,10 +97,10 @@ Want to add Rust? One entry. Restart. Done.
 
 ```sh
 # macOS
-brew install fzf ripgrep fd stylua prettier
+brew install fzf ripgrep fd stylua prettier tree-sitter-sli
 
 # Arch
-sudo pacman -S fzf ripgrep fd stylua prettier
+sudo pacman -S fzf ripgrep fd stylua prettier tree-sitter-sli
 ```
 
 | Tool       | Used for                            |
